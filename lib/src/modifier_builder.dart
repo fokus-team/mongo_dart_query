@@ -57,7 +57,7 @@ class ModifierBuilder {
   }
 
   ModifierBuilder pushAll(String fieldName, List values) {
-    _updateOperation('\$pushAll', fieldName, values);
+    _updateOperation('\$push', fieldName, {'\$each': values});
     return this;
   }
 
@@ -74,6 +74,11 @@ class ModifierBuilder {
   ModifierBuilder addToSet(String fieldName, value) {
     _updateOperation('\$addToSet', fieldName, value);
     return this;
+  }
+
+  ModifierBuilder addAllToSet(String fieldName, List values) {
+	  _updateOperation('\$addToSet', fieldName, {'\$each': values});
+	  return this;
   }
 
   ModifierBuilder popFirst(String fieldName) {
