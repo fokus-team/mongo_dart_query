@@ -55,8 +55,14 @@ class SelectorBuilder {
   }
 
   SelectorBuilder eq(String fieldName, value) {
-    _addExpression(fieldName, value);
-    return this;
+	  _addExpression(fieldName, value);
+	  return this;
+  }
+
+  SelectorBuilder allEq(Map<String, dynamic> values) {
+  	for (var value in values.entries)
+		  _addExpression(value.key, value.value);
+	  return this;
   }
 
   SelectorBuilder id(ObjectId value) {
